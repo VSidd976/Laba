@@ -10,10 +10,9 @@ class Person:
     def add_person(self):
         pass
 
-    @classmethod
-    def get_information(cls, name, surname, fathername):
-        print(f"Name: {cls.name}"
-              f"\nSurname: {cls.surname}"
-              f"\nFathername: {cls.fathername}"
-              f"\nFaculty: {cls.faculty}"
+    def get_information(self, name, surname, fathername):
+        print(f"Name: {self.name}"
+              f"\nSurname: {self.surname}"
+              f"\nFathername: {self.fathername}"
+              f"\nFaculty: {self.faculty}"
               )
