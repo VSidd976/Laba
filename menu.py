@@ -24,18 +24,18 @@ class Menu:
         if self.index == len(self.content):
             self.index = 0
 
-    def use(self, name, content):
+    @staticmethod
+    def use(name, content):
         new_menu = Menu(name, content)
         return new_menu.display()
-#dick = {"Mohyla": ["People", "Structures", "Exit"]
- #       "People": ["Students","Lecturers"]
-  #      "Structures": ["Cathedra", "Faculties"]}
+# dick = {"Mohyla": ["People", "Structures", "Exit"]
+#       "People": ["Students","Lecturers"]
+#      "Structures": ["Cathedra", "Faculties"]}
 
 
-
-name = "Mohyla"
-content = ["People", "Structures", "Exit"]
-menu = Menu(name, content)
+name_of_university = "Mohyla"
+content_of_university = ["People", "Structures", "Exit"]
+menu = Menu(name_of_university, content_of_university)
 print(menu.display())
 menu.up()
 print(menu.display())
@@ -50,4 +50,3 @@ menu3 = Menu("Structures", ["Cathedra", "Faculties"])
 print(menu2.display())
 print(menu3.display())
 print(menu.use("People", ["Students"]))
-
