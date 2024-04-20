@@ -1,13 +1,17 @@
-from system import System
+from system import *
 
 
 class Faculty(System):
-    dict_of_faculties = {}
 
     def __init__(self, name, field_of_study):
         super().__init__(name, field_of_study)
 
-    def add_instance_to_system(self):
-        Faculty.dict_of_faculties[self.name] = self
-        System.dict_of_system["Faculty"] = Faculty.dict_of_faculties
-    # Adds instance to the faculties dictionary
+
+fi = Faculty('FI', "Informatics")
+fen = Faculty('FEN', "Economy")
+NaUKMA.add_instance_to_dict(fi, faculties)
+NaUKMA.add_instance_to_dict(fen, faculties)
+
+
+if __name__ == "__main__":
+    print(faculties.dict_of_instance)

@@ -1,13 +1,17 @@
-class System:
-    dict_of_system = {}
-    # There will be 2 keys: Cathedra and Faculty with dicts
+from naukma import *
 
-    def __init__(self, name, field_of_study):
-        self.name = name
+
+class System(NaUKMA):
+    def __init__(self, name, field_of_study=None):
+        super().__init__(name)
         self.field_of_study = field_of_study
 
-    def create_instance(self):
-        pass
 
-    def edit_instance(self):
-        pass
+cathedras = System("Cathedras")
+faculties = System("Faculties")
+NaUKMA.add_instance_to_dict(cathedras, system)
+NaUKMA.add_instance_to_dict(faculties, system)
+
+
+if __name__ == "__main__":
+    print(system.dict_of_instance)
