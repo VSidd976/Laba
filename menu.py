@@ -25,12 +25,13 @@ class Menu:
         if self.index == len(self.content):
             self.index = 0
 
-menu1 = Menu("Mohyla",["People", "Structures"])
+
+menu1 = Menu("Mohyla", ["People", "Structures"])
 menu2 = Menu("People", ["Students", "Lecturers"])
 menu3 = Menu("Structures", ["Cathedras", "Faculties"])
 menu4 = Menu("Cathedras", ["Math", "Economics", "Biology"])
 menu5 = Menu("Faculties", ["Fi", "Fen", "Fprn"])
-menu6 = Menu("Students",["Dima", "Valentin"])
+menu6 = Menu("Students", ["Dima", "Valentin"])
 menu7 = Menu("Lecturers", ["Kozir", "Mitnyk"])
 menu_dict = {"Mohyla": menu1, "People": menu2,
              "Structures": menu3, "Cathedras": menu4,
@@ -48,8 +49,3 @@ while True:
         main_menu = menu_dict[main_menu.content[main_menu.index]]
     else:
         break
-
-
-
-
-
