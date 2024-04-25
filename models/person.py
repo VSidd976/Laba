@@ -1,14 +1,39 @@
 from naukma import *
+import random
 
 
 class Person(NaUKMA):
+    list_of_id = []
 
     def __init__(self, name, surname=None, fathername=None, faculty=None):
         super().__init__(name)
         self.surname = surname
         self.fathername = fathername
         self.faculty = faculty
-        self.list_of_members = []
+        def get_random_id():
+            id = int
+            if len(Person.list_of_id) == 1000000:
+                print("Max people achieved")
+            #  Треба написати для цього окремий рейз помилки
+            random_id = random.randint(1, 1000000)
+            if random_id not in Person.list_of_id:
+                id = random_id
+            else:
+                get_random_id()
+            return id
+        self.id = get_random_id()
+
+    def add_instance_to_dict(self, instance):
+        instance.dict_of_instance[self.id] = self
+
+    def add_person(self):
+        pass
+
+    def delete_person(self):
+        pass
+
+    def edit_person(self):
+        pass
 
 
 students = Person("Students")

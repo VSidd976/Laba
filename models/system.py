@@ -6,6 +6,17 @@ class System(NaUKMA):
         super().__init__(name)
         self.field_of_study = field_of_study
 
+    def add_instance_to_dict(self, instance):
+        instance.dict_of_instance[self.name] = self
+
+    def edit_system_instance(self):
+        new_field = input("Впишіть нову сферу "
+                          "вивчення(якщо хочете залишити минулу,"
+                          " впишіть '-'):")
+        if new_field == '-':
+            pass
+        else:
+            self.field_of_study = new_field
 
 cathedras = System("Cathedras")
 faculties = System("Faculties")
