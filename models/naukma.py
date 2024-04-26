@@ -4,7 +4,7 @@ class NaUKMA:
     def __init__(self, name):
         self.name = name
         self.dict_of_instance = {}
-        self.list_of_members = []
+        self.list_of_instance = []
         # Цей dict_of_instance буде успадковуватись у всіх дочірніх класах.
         # Тобто при створенні екземпляра дочірнього класу в нього буде автоматично створюватись свій словник
         # Так само для list_of_members, тільки він вже буде використовуватись, коли дійдемо до кінця матрьошки
@@ -16,9 +16,14 @@ class NaUKMA:
     # Це будуть об'єкти класу NaUKMA"""
 
     def add_instance_to_dict(self, instance):
-        pass
+        instance.dict_of_instance[self.name] = self
     # Цей метод для дочірніх класів, щоб його по 100 разів не писати в дочіпніх класах
     # Просто треба буде вказати до словника якого об'єкта ми хочемо додати наступний об'єкт по матрьошці
+
+    def add_instance_to_list(self, instance):
+        instance.list_of_instance.append(self)
+    # Цей метод для того, щоб додавати об'єкти дочірніх класів, які стоять у кінці матрьошки
+    # Типу об'єкти класу Student або Teacher
 
 
 system = NaUKMA('System')
