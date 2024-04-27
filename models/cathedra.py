@@ -21,6 +21,18 @@ class Cathedra(System):
             print(f"Кафедру '{self.name}' видалено.")
     # Видаляє кафедру і її ключ зі значенням в словнику матьошці
 
+    def edit_faculty(self):
+        answer = input("Впишіть, що ви хочете змінити('n' - name \n"
+                       "'f' - field of study: ")
+        if answer == 'n':
+            self.name = input("Впишіть відредаговану назву кафедри: ")
+        if answer == 'f':
+            self.field_of_study = input("Впишіть відредагований предмет вивчення: ")
+        else:
+            print("Такої опції не існує")
+            pass
+        # Дмитре Раяне Гослінгу, напишіть тут ще всякі методи щоб виходити назад в меню
+
 
 math_cathedra = Cathedra("Math", "All that connected to math")
 economy_cathedra = Cathedra("Economy", "All that connected to economy")

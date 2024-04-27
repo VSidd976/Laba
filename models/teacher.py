@@ -1,7 +1,10 @@
 from person import *
 from faculty import *
 from cathedra import *
-
+alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
+            "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч",
+            "Ш", "Щ", "Ь", "Ю", "Я"]
+# потім прибрати алфавіт
 
 class Teacher(Person):
     def __init__(self, name, surname, fathername, faculty, cathedra):
@@ -21,6 +24,125 @@ class Teacher(Person):
             print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
+
+    def show_info(self):
+        if self not in teacher.list_of_instance:
+            print("Викладача не існує.")
+        else:
+            print(f"Інформація про викладача:\n"
+                  f"Ім'я: {self.name}\n"
+                  f"Прізвище: {self.surname}\n"
+                  f"Факультет: {self.faculty}\n"
+                  f"Кафедра: {self.cathedra}\n")
+
+    @staticmethod
+    def find_list_by_name(name):
+        list_by_name = []
+        counter = 0
+        for teacher in teachers.list_of_instance:
+            if teacher.name == name:
+                list_by_name.append(teacher)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів з іменем {name} не існує")
+            return None
+        else:
+            return list_by_name
+
+    @staticmethod
+    def find_list_by_surname(surname):
+        list_by_surname = []
+        counter = 0
+        for teacher in teachers.list_of_instance:
+            if teacher.surname == surname:
+                list_by_surname.append(teacher)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів з прізвищем {surname} не існує")
+            return None
+        else:
+            return list_by_surname
+
+    @staticmethod
+    def find_list_by_fathername(fathername):
+        list_by_fathername = []
+        counter = 0
+        for teacher in teachers.list_of_instance:
+            if teacher.fathername == fathername:
+                list_by_fathername.append(teacher)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів з по-батькові {fathername} не існує")
+            return None
+        else:
+            return list_by_fathername
+
+    @staticmethod
+    def find_list_by_pib(name, surname, fathername):
+        list_by_pib = []
+        counter = 0
+        for teacher in teachers.list_of_instance:
+            if (teacher.name == name
+                and teacher.surname == surname
+                and teacher.fathername == fathername):
+                list_by_pib.append(student)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів з таким ПІБ не існує")
+            return None
+        else:
+            return list_by_pib
+
+    @staticmethod
+    def find_list_by_faculty(faculty):
+        list_by_faculty = []
+        counter = 0
+        for teach in teacher.list_of_instance:
+            if teach.faculty == faculty:
+                list_by_faculty.append(teach)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів в {faculty} факультеті не існує")
+            return None
+        else:
+            return list_by_faculty
+
+    @staticmethod
+    def find_list_by_cathedra(cathedra):
+        list_by_cathedra = []
+        counter = 0
+        for teach in teacher.list_of_instance:
+            if teach.cathedra == cathedra:
+                list_by_cathedra.append(teach)
+                counter += 1
+        if counter == 0:
+            print(f"Викладачів в {cathedra} кафедрі не існує")
+            return None
+        else:
+            return list_by_cathedra
+
+    @staticmethod
+    def get_by_alphabet_on_faculty(faculty):
+        list_by_alphabet = []
+        list_by_faculty = Teacher.find_list_by_faculty(faculty)
+        for letter in alphabet:
+            for i in list_by_faculty:
+                if letter == i.surname[0]:
+                    list_by_alphabet.append(list_by_faculty[j])
+        return list_by_alphabet
+    # Вивести інформацію про всіх викладачів факультета впорядкованих за алфавітом.
+
+    @staticmethod
+    def get_by_cathedra_by_alphabet(cathedra):
+        sorted_list = []
+        list_by_alphabet = Teacher.get_by_alphabet()
+        list_by_cathedra = Teacher.find_list_by_cathedra(cathedra)
+        for teach in list_by_cathedra:
+            for teach_2 in list_by_alphabet:
+                if teach == teach_2:
+                    sorted_list.append(teach)
+        return sorted_list
+    # Вивести інформацію про всіх студентів кафедри впорядкованих за алфавітом.
 
     def edit_person(self):
         answer = input("Впишіть, що ви хочете змінити('n' - ім'я"

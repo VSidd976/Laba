@@ -35,6 +35,9 @@ class Person(NaUKMA):
     def delete_person(self, person):
         pass
 
+    def show_info(self):
+        pass
+
     def edit_person(self):
         pass
 
