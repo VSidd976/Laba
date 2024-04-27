@@ -1,4 +1,4 @@
-from naukma import NaUKMA
+from models.naukma import NaUKMA
 
 
 class Person(NaUKMA):
@@ -12,9 +12,6 @@ class Person(NaUKMA):
         pass
 
     def delete_person(self, person):
-        pass
-
-    def show_info(self):
         pass
 
     def edit_person(self):

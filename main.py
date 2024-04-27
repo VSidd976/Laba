@@ -1,20 +1,30 @@
 import models
 from menu import Menu
-
-
-menu1 = Menu("Mohyla", ["People", "Structures"])
-menu2 = Menu("People", ["Students", "Lecturers"])
-menu3 = Menu("Structures", ["Cathedras", "Faculties"])
-menu4 = Menu("Cathedras", ["Math", "Economics", "Biology"])
-menu5 = Menu("Faculties", ["Fi", "Fen", "Fprn"])
-menu6 = Menu("Students", ["Dima", "Valentin"])
-menu7 = Menu("Lecturers", ["Kozir", "Mitnyk"])
-menu_dict = {"Mohyla": menu1, "People": menu2,
-             "Structures": menu3, "Cathedras": menu4,
+system = models.NaUKMA("System")
+people = models.NaUKMA("People")
+cathedras = models.System("Cathedras")
+faculties = models.System("Faculties")
+students = models.Person("Students")
+teachers = models.Person("Teachers")
+system.add_instance_to_naukma()
+people.add_instance_to_naukma()
+cathedras.add_instance_to_dict(system)
+faculties.add_instance_to_dict(system)
+students.add_instance_to_dict(people)
+teachers.add_instance_to_dict(people)
+menu1 = Menu("NaUKMA", list(models.NaUKMA.dict_of_naukma.keys()))
+menu2 = Menu("People", list(people.dict_of_instance.keys()))
+menu3 = Menu("System", list(system.dict_of_instance.keys()))
+menu4 = Menu("Cathedras", list(cathedras.dict_of_instance.keys()))
+menu5 = Menu("Faculties", list(faculties.dict_of_instance.keys()))
+menu6 = Menu("Students", list(students.dict_of_instance.keys()))
+menu7 = Menu("Teachers", list(teachers.dict_of_instance.keys()))
+menu_dict = {"NaUKMA": menu1, "People": menu2,
+             "System": menu3, "Cathedras": menu4,
              "Faculties": menu5, "Students": menu6,
-             "Lecturers": menu7}
-menu_dict2 = {"People": menu1, "Structures": menu1, "Cathedras": menu3,
-              "Faculties": menu3, "Students": menu2, "Lecturers": menu2}
+             "Teachers": menu7}
+menu_dict2 = {"People": menu1, "System": menu1, "Cathedras": menu3,
+              "Faculties": menu3, "Students": menu2, "Teachers": menu2}
 main_menu = menu1
 while True:
     print(main_menu.display())

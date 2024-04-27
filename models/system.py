@@ -1,4 +1,4 @@
-from naukma import NaUKMA
+from models.naukma import NaUKMA
 
 
 class System(NaUKMA):

@@ -1,5 +1,5 @@
-from cathedra import Cathedra
-from naukma import NaUKMA
+from models.cathedra import Cathedra
+from models.naukma import NaUKMA
 
 
 class Discipline(Cathedra):
