@@ -1,4 +1,4 @@
-from naukma import *
+from naukma import NaUKMA
 
 
 class System(NaUKMA):
@@ -14,13 +14,3 @@ class System(NaUKMA):
             pass
         else:
             self.field_of_study = new_field
-
-
-cathedras = System("Cathedras")
-faculties = System("Faculties")
-NaUKMA.add_instance_to_dict(cathedras, system)
-NaUKMA.add_instance_to_dict(faculties, system)
-
-
-if __name__ == "__main__":
-    print(system.dict_of_instance)
