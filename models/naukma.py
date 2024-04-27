@@ -24,14 +24,3 @@ class NaUKMA:
         instance.list_of_instance.append(self)
     # Цей метод для того, щоб додавати об'єкти дочірніх класів, які стоять у кінці матрьошки
     # Типу об'єкти класу Student або Teacher
-
-
-system = NaUKMA('System')
-people = NaUKMA('People')
-system.add_instance_to_naukma()
-people.add_instance_to_naukma()
-# Це приклад його функціонування
-# В інших файлах також є приклади
-
-if __name__ == "__main__":
-    print(NaUKMA.dict_of_naukma)

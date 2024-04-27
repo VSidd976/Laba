@@ -1,6 +1,5 @@
-from person import *
-from faculty import *
-from cathedra import *
+from person import Person
+from naukma import NaUKMA
 
 
 class Teacher(Person):
@@ -8,16 +7,16 @@ class Teacher(Person):
         super().__init__(name, surname, fathername, faculty)
         self.cathedra = cathedra
 
-    def add_person(self, teacher):
-        if self not in teacher.list_of_instance:
-            NaUKMA.add_instance_to_list(self, teacher)
+    def add_person(self, teachers):
+        if self not in teachers.list_of_instance:
+            NaUKMA.add_instance_to_list(self, teachers)
             print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
 
-    def delete_person(self, teacher):
-        if self not in teacher.list_of_instance:
-            NaUKMA.add_instance_to_list(self, teacher)
+    def delete_person(self, teachers):
+        if self not in teachers.list_of_instance:
+            NaUKMA.add_instance_to_list(self, teachers)
             print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
@@ -42,13 +41,3 @@ class Teacher(Person):
             print("Такої опції не існує")
             pass
         # Дмитре, напишіть тут ще всякі методи щоб виходити назад в меню
-
-
-kozerenko = Teacher("Serhyi", "Kozerenko", "Oleksandr", fi, math_cathedra)
-kundik = Teacher("Kyrylo", "Kundik", "Volodymyr", fi, informatics_cathedra)
-NaUKMA.add_instance_to_list(kozerenko, teachers)
-NaUKMA.add_instance_to_list(kundik, teachers)
-
-
-if __name__ == "__main__":
-    print(teachers.list_of_instance)

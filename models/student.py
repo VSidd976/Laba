@@ -1,5 +1,5 @@
-from person import *
-from specialty import *
+from person import Person
+from naukma import NaUKMA
 
 
 class Student(Person):
@@ -12,15 +12,15 @@ class Student(Person):
         # Якщо в студента за пеціальністю є група, то її можна просто вказати, але при тому в студента
         # в якого немає групи не буде проблем з тим, що йому треба заповнювати це поле
 
-    def add_person(self, student):
-        if self not in student.list_of_instance:
-            NaUKMA.add_instance_to_list(self, student)
+    def add_person(self, students):
+        if self not in students.list_of_instance:
+            NaUKMA.add_instance_to_list(self, students)
             print(f"Студента '{self.name} {self.surname}' додано.")
         else:
             print(f"Студент '{self.name} {self.surname}' вже існує.")
 
-    def delete_person(self, student):
-        if self in student.list_of_instance:
+    def delete_person(self, students):
+        if self in students.list_of_instance:
             students.list_of_instance.remove(self)
             print(f"Студента '{self.name} {self.surname}' вилучено.")
         else:
@@ -46,17 +46,3 @@ class Student(Person):
             print("Такої опції не існує")
             pass
         # Дмитре, напишіть тут ще всякі методи щоб виходити назад в меню
-
-
-dima_s = Student("Dmytro", "Sukhodolskyi", "Andryi", fi, am, 1)
-dima_e = Student("Dmytro", "Ermolov", "Roman", fi, am, 1)
-# NaUKMA.add_instance_to_list(dima_s, students)
-# NaUKMA.add_instance_to_list(dima_e, students)
-dima_s.add_person(students)
-dima_e.add_person(students)
-dima_s.delete_person(students)
-dima_e.delete_person(students)
-
-
-if __name__ == "__main__":
-    print(students.list_of_instance)
