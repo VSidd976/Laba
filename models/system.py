@@ -6,6 +6,12 @@ class System(NaUKMA):
         super().__init__(name)
         self.field_of_study = field_of_study
 
+    def add_instance(self, instance_list):
+        pass
+
+    def delete_instance(self, instance_list):
+        pass
+
     def edit_system_instance(self):
         new_field = input("Впишіть нову сферу "
                           "вивчення(якщо хочете залишити минулу,"

@@ -1,0 +1,12 @@
+Students data:
+Name,Surname,Fathername,Faculty,Specialty,Course
+name,surname,fathername,faculty,speciality,course
+Dima,S,Email,Phone,Adress,1
+Valik,V,Gmail,one,dress,4
+Teachers data:
+Name,Surname,Fathername,Faculty,Cathedra
+Dimon,Kozerenko,A,YO,MAth
+Faculties data:
+Name,Field of study
+Cathedras data:
+Name,Field of study

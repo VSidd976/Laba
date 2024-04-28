@@ -3,7 +3,5 @@ from .system import System
 from .person import Person
 from .faculty import Faculty
 from .cathedra import Cathedra
-from .specialty import Specialty
-from .discipline import Discipline
 from .student import Student
 from .teacher import Teacher

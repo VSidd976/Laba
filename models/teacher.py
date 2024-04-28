@@ -1,5 +1,6 @@
 from models.person import Person
 from models.naukma import NaUKMA
+# from data import csv_mastering
 
 
 alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
@@ -19,6 +20,7 @@ class Teacher(Person):
             print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
+        # csv_mastering.save_data()
 
     def delete_person(self, teacher):
         if self not in teacher.list_of_instance:
@@ -26,6 +28,7 @@ class Teacher(Person):
             print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
+        # csv_mastering.save_data()
 
     def show_info(self, teachers):
         if self not in teachers.list_of_instance:
@@ -176,5 +179,5 @@ class Teacher(Person):
             self.cathedra = input("Впишіть відредаговану групу навчання викладача: ")
         else:
             print("Такої опції не існує")
-            pass
+        # csv_mastering.save_data()
         # Дмитре, напишіть тут ще всякі методи щоб виходити назад в меню

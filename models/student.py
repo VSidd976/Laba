@@ -1,8 +1,12 @@
 from models.person import Person
 from models.naukma import NaUKMA
+# from data import csv_mastering
+
 alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
             "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч",
             "Ш", "Щ", "Ь", "Ю", "Я"]
+
+
 # потім прибрати алфавіт
 
 
@@ -22,9 +26,9 @@ class Student(Person):
             NaUKMA.add_instance_to_list(self, students)
             print(f"Студента '{self.name} {self.surname}' додано.")
 
-
         else:
             print(f"Студент '{self.name} {self.surname}' вже існує.")
+        # csv_mastering.save_data()
 
     def delete_person(self, students):
         if self in students.list_of_instance:
@@ -32,6 +36,7 @@ class Student(Person):
             print(f"Студента '{self.name} {self.surname}' вилучено.")
         else:
             print(f"Студента '{self.name} {self.surname}' не існує.")
+        # csv_mastering.save_data()
 
     def show_info(self, students):
         if self not in students.list_of_instance:
@@ -45,6 +50,7 @@ class Student(Person):
                   f"Курс: {self.course}\n")
             if self.group is not None:
                 print(f"Група: {self.group}")
+        # csv_mastering.save_data()
     # Виводить всю інформацію про студента
 
     @staticmethod
@@ -192,7 +198,7 @@ class Student(Person):
     def get_by_course(student):
         list_by_course = []
         list_of_students = student.list_of_instance
-        for i in [1, 2, 3, 4, 5, 6]:
+        for i in ["1", "2", "3", "4", "M-1", "M-2"]:
             for j in list_of_students:
                 if i == j.course:
                     list_by_course.append(j)
@@ -265,5 +271,5 @@ class Student(Person):
             self.group = input("Впишіть відредаговану групу навчання студента: ")
         else:
             print("Такої опції не існує")
-            pass
+        # csv_mastering.save_data()
     # Дмитре Раяне Гослінгу, напишіть тут ще всякі методи щоб виходити назад в меню
