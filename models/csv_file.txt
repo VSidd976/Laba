@@ -1,0 +1,12 @@
+Students data:
+Name,Surname,Fathername,Faculty,Cathedra,Specialty,Course
+Діма,Єрмолов,Олександрович,Fi,math,aplied math,1
+Name,Surname,Fathername,Faculty,Cathedra,Specialty,Course
+Діма,Єрмолов,Олександрович,Fi,math,aplied math,1
+Teachers data:
+Name,Surname,Fathername,Faculty,Cathedra
+Name,Surname,Fathername,Faculty,Cathedra
+Faculties data:
+Name,Field of study
+Cathedras data:
+Name,Field of study

@@ -1,6 +1,6 @@
 from models.system import System
 from models.naukma import NaUKMA
-# from data import csv_mastering
+# from data2 import csv_mastering
 
 
 class Faculty(System):

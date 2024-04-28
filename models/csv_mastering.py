@@ -1,35 +1,22 @@
 import csv
-import models
+from models.objects import *
 
 
-students = models.Person("Students")
-teachers = models.Person("Teachers")
-faculties = models.System("Faculties")
-cathedras = models.System("Cathedras")
-student = models.Student("Dima", "S", "Email", "Phone", "Adress", "1")
-student_2 = models.Student("Valik", "V", "Gmail", "one", "dress", "4")
-teacher = models.Teacher("Dimon", "Kozerenko", "A", "YO", "MAth")
-student.add_person(students)
-student_2.add_person(students)
-teacher.add_person(teachers)
-students_list = [[i.name, i.surname, i.fathername, i.faculty, i.specialty, i.course]
-                 for i in students.list_of_instance]
-teachers_list = [[i.name, i.surname, i.fathername, i.faculty, i.cathedra]
-                 for i in teachers.list_of_instance]
-faculties_list = [[i.name, i.field_of_study]
-                  for i in faculties.list_of_instance]
-cathedras_list = [[i.name. i.cathedra]
-                  for i in cathedras.list_of_instance]
-
-print(students_list)
-print(teachers_list)
-
+def data_clean
 
 def save_data():
-    with open('C:\\Users\\admin\\Downloads\\laba\\data\\csv_file', 'w', newline='') as file:
+    students_list = [[i.name, i.surname, i.fathername, i.faculty, i.cathedra, i.specialty, i.course]
+                     for i in students.list_of_instance]
+    teachers_list = [[i.name, i.surname, i.fathername, i.faculty, i.cathedra]
+                     for i in teachers.list_of_instance]
+    faculties_list = [[i.name, i.field_of_study]
+                      for i in faculties.list_of_instance]
+    cathedras_list = [[i.name.i.cathedra]
+                      for i in cathedras.list_of_instance]
+    with open("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(["Students data:"])
-        writer.writerow(['Name', 'Surname', 'Fathername', 'Faculty', 'Specialty', 'Course'])
+        writer.writerow(['Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra', 'Specialty', 'Course'])
         for row in students_list:
             writer.writerow(row)
         writer.writerow(["Teachers data:"])
@@ -48,7 +35,7 @@ def save_data():
 
 
 def read_from_data():
-    with open('C:\\Users\\admin\\Downloads\\laba\\data\\csv_file', 'r', newline='', encoding='utf-8') as file:
+    with open('models\\csv_file.txt', 'r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         for row in reader:
             result_string = ", ".join(row)
@@ -76,8 +63,8 @@ def get_from_data(input_file_direction):
                 current_section = "cathedras"
                 continue
             if current_section == "students":
-                name, surname, fathername, faculty, specialty, course = row
-                student1 = models.Student(name, surname, fathername, faculty, specialty, course)
+                name, surname, fathername, faculty, cathedra, speciality, course = row
+                student1 = models.Student(name, surname, fathername, faculty, cathedra, speciality, course)
                 student1.add_person(students)
             elif current_section == "teachers":
                 name, surname, fathername, faculty, cathedra = row
@@ -88,7 +75,8 @@ def get_from_data(input_file_direction):
                 faculty = models.Faculty(name, field_of_study)
                 faculties.add_instance(faculty)
             elif current_section == "cathedras":
-                name, cathedra = row
-                cathedra_instance = models.Cathedra(name, cathedra)
+                name, field_of_study = row
+                cathedra_instance = models.Cathedra(name, field_of_study)
                 cathedras.add_instance(cathedra_instance)
+    save_data()
 # Відновити дані з локального сховища

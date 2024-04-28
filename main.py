@@ -1,23 +1,17 @@
-import models
 from menu import Menu
-from models import Student
+from models.csv_mastering import *
 
-system = models.NaUKMA("System")
-people = models.NaUKMA("People")
-cathedras = models.System("Cathedras")
-faculties = models.System("Faculties")
-students = models.Person("Students")
-teachers = models.Person("Teachers")
 system.add_instance_to_naukma()
 people.add_instance_to_naukma()
 cathedras.add_instance_to_dict(system)
 faculties.add_instance_to_dict(system)
 students.add_instance_to_dict(people)
 teachers.add_instance_to_dict(people)
-student1 = Student("Діма", "Єрмолов",
+student1 = models.Student("Діма", "Єрмолов",
                    "Олександрович", "Fi",
-                   "math", "1")
-models.Student.add_person(student1, students)
+                   "math", "aplied math", "1")
+student1.add_person(students)
+print(students.list_of_instance)
 list_of_student_names = []
 for student in students.list_of_instance:
     list_of_student_names.append(f"{student.surname} {student.name} {student.fathername}")
@@ -66,9 +60,10 @@ while True:
                 surname = input("Enter surname: ")
                 fathername = input("Enter fathername: ")
                 faculty = input("Enter faculty: ")
-                speciality = input("Enter speciality: ")
+                specialty = input("Enter specialty: ")
                 course = input("Enter course: ")
-                student = Student(name, surname, fathername, faculty, speciality, course)
+                cathedra = input("Enter cathedra")
+                student = models.Student(name, surname, fathername, faculty, cathedra, specialty, course)
                 models.Student.add_person(student, students)
                 list_of_student_names.append(f"{student.surname} {student.name} {student.fathername}")
         elif command in ["s", "showinfo"]:
@@ -76,7 +71,7 @@ while True:
                 print("Invalid command")
             elif main_menu.name in ["Students", "Teachers"]:
                 student = students.list_of_instance[main_menu.index]
-                Student.show_info(student, students)
+                models.Student.show_info(student, students)
 
             # Add cathedra teacher and more
         elif command in ["edit"]:
@@ -84,10 +79,10 @@ while True:
                 print("Invalid command")
             elif main_menu.name in ["Students", "Teachers"]:
                 student = students.list_of_instance[main_menu.index]
-                Student.edit_person(student)
+                models.Student.edit_person(student)
                 list_of_student_names[main_menu.index] = f"{student.surname} {student.name} {student.fathername}"
         elif command in ["findlistbyfathername"]:
-            list_of_fathernames = Student.find_list_by_fathername(input("Enter fathername: "), students)
+            list_of_fathernames = models.Student.find_list_by_fathername(input("Enter fathername: "), students)
             if list_of_fathernames is None:
                 continue
             else:
@@ -99,14 +94,14 @@ while True:
                 "Введіть за чим хочете шукати [n]ame, "
                 "[f]athername, [s]urname, [fa]culty, [c]athedra, [p]ib : ").strip().lower()
             if command2 in ["n", "name"]:
-                list_of_names = Student.find_list_by_name(input("Enter name: "), students)
+                list_of_names = models.Student.find_list_by_name(input("Enter name: "), students)
                 if list_of_names is None:
                     continue
                 else:
                     for name in list_of_names:
                         print(f"Students with this name: {name.surname} {name.name} {name.fathername}")
             elif command2 in ["f", "fathername"]:
-                list_of_fathernames = Student.find_list_by_fathername(input("Enter fathername: "), students)
+                list_of_fathernames = models.Student.find_list_by_fathername(input("Enter fathername: "), students)
                 if list_of_fathernames is None:
                     continue
                 else:
@@ -114,28 +109,28 @@ while True:
                         print(
                             f"Students with this fathername: {fathername.surname} {fathername.name} {fathername.fathername}")
             elif command2 in ["s", "surname"]:
-                list_of_surnames = Student.find_list_by_surname(input("Enter"), students)
+                list_of_surnames = models.Student.find_list_by_surname(input("Enter"), students)
                 if list_of_surnames is None:
                     continue
                 else:
                     for surname in list_of_surnames:
                         print(f"Students with this fathername: {surname.surname} {surname.name} {surname.fathername}")
             elif command2 in ["fa", "faculty"]:
-                list_of_faculties = Student.find_list_by_faculty(input("Enter"), students)
+                list_of_faculties = models.Student.find_list_by_faculty(input("Enter"), students)
                 if list_of_faculties is None:
                     continue
                 else:
                     for faculty in list_of_faculties:
                         print(f"Students on this faculty: {faculty.surname} {faculty.name} {faculty.fathername}")
             elif command2 in ["c", "cathedra"]:
-                list_of_cathedra = Student.find_list_by_cathedra(input("Enter cathedra: "), students)
+                list_of_cathedra = models.Student.find_list_by_cathedra(input("Enter cathedra: "), students)
                 if list_of_cathedra is None:
                     continue
                 else:
                     for cathedra in list_of_cathedra:
                         print(f"Students on this cathedra: {cathedra.surname} {cathedra.name} {cathedra.fathername}")
             elif command2 in ["p", "pib"]:
-                list_of_pib = Student.find_list_by_pib(input("Enter name: "), input("Enter surname: "),
+                list_of_pib = models.Student.find_list_by_pib(input("Enter name: "), input("Enter surname: "),
                                                        input("Enter fathername: "), students)
                 if list_of_pib is None:
                     continue
@@ -147,25 +142,25 @@ while True:
                 "Введіть за чим хочете шукати [a]lphabet, "
                 "alphabet on [f]aculty, [c]ourse, [cc]thedra course : ").strip().lower()
             if command2 in ["a", "alphabet"]:
-                sorted_list = Student.get_by_alphabet(students)
+                sorted_list = models.Student.get_by_alphabet(students)
                 for student in sorted_list:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             elif command2 in ["f", "faculty"]:
-                sorted_list = Student.get_by_alphabet_on_faculty(input("Enter faculty:"), students)
+                sorted_list = models.Student.get_by_alphabet_on_faculty(input("Enter faculty:"), students)
                 if sorted_list is None:
                     print("No students")
                     continue
                 for student in sorted_list:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             elif command2 in ["c", "course"]:
-                sorted_list = Student.get_by_course(students)
+                sorted_list = models.Student.get_by_course(students)
                 if sorted_list is None:
                     print("No students")
                     continue
                 for student in sorted_list:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             elif command2 in ["cc", "cathedracourse"]:
-                sorted_list = Student.get_students_cathedra_course(input("Enter cathedra: "), input("Enter course"),
+                sorted_list = models.Student.get_students_cathedra_course(input("Enter cathedra: "), input("Enter course"),
                                                                    students)
                 if sorted_list is None:
                     print("No students")
