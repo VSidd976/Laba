@@ -16,7 +16,6 @@ class Teacher(Person):
     def add_person(self, teacher):
         if self not in teacher.list_of_instance:
             NaUKMA.add_instance_to_list(self, teacher)
-            print(f"Викладача '{self.name} {self.surname}' додано.")
         else:
             print(f"Викладача '{self.name} {self.surname}' вже існує.")
         # csv_mastering.save_data()

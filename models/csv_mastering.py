@@ -2,9 +2,13 @@ import csv
 from models.objects import *
 
 
-def data_clean
+def data_clean():
+    with open("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
+        pass
+
 
 def save_data():
+    data_clean()
     students_list = [[i.name, i.surname, i.fathername, i.faculty, i.cathedra, i.specialty, i.course]
                      for i in students.list_of_instance]
     teachers_list = [[i.name, i.surname, i.fathername, i.faculty, i.cathedra]
@@ -16,26 +20,26 @@ def save_data():
     with open("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(["Students data:"])
-        writer.writerow(['Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra', 'Specialty', 'Course'])
+        # Формат: 'Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra', 'Specialty', 'Course'
         for row in students_list:
             writer.writerow(row)
         writer.writerow(["Teachers data:"])
-        writer.writerow(['Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra'])
+        # Формат: 'Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra'
         for row in teachers_list:
             writer.writerow(row)
         writer.writerow(["Faculties data:"])
-        writer.writerow(['Name', 'Field of study'])
+        # Формат: 'Name', 'Field of study'
         for row in faculties_list:
             writer.writerow(row)
         writer.writerow(["Cathedras data:"])
-        writer.writerow(['Name', 'Field of study'])
+        # Формат: 'Name', 'Field of study'
         for row in cathedras_list:
             writer.writerow(row)
 # Зберегти дані програми в локальне сховище.
 
 
 def read_from_data():
-    with open('models\\csv_file.txt', 'r', newline='', encoding='utf-8') as file:
+    with open('C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt', 'r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         for row in reader:
             result_string = ", ".join(row)
@@ -48,7 +52,7 @@ def get_from_data(input_file_direction):
         reader = csv.reader(file)
         current_section = None
         for row in reader:
-            if not row:
+            if not row or row == '':
                 continue
             if "Students data:" in row:
                 current_section = "students"
@@ -78,5 +82,6 @@ def get_from_data(input_file_direction):
                 name, field_of_study = row
                 cathedra_instance = models.Cathedra(name, field_of_study)
                 cathedras.add_instance(cathedra_instance)
+                pass
     save_data()
 # Відновити дані з локального сховища

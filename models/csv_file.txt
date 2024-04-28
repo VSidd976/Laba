@@ -1,12 +1,8 @@
 Students data:
-Name,Surname,Fathername,Faculty,Cathedra,Specialty,Course
 Діма,Єрмолов,Олександрович,Fi,math,aplied math,1
-Name,Surname,Fathername,Faculty,Cathedra,Specialty,Course
-Діма,Єрмолов,Олександрович,Fi,math,aplied math,1
+ДІМА,Ємолов,Сандрович,Fi,asd,aplied math,2
+В,А,С,Д,Ч,В,1
 Teachers data:
-Name,Surname,Fathername,Faculty,Cathedra
-Name,Surname,Fathername,Faculty,Cathedra
+Сергій,Козеренко,Олександрочич,Fi,Кафедра пенісів
 Faculties data:
-Name,Field of study
 Cathedras data:
-Name,Field of study

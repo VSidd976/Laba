@@ -5,8 +5,6 @@ from models.csv_mastering import save_data
 alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
             "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч",
             "Ш", "Щ", "Ь", "Ю", "Я"]
-
-
 # потім прибрати алфавіт
 
 
@@ -21,14 +19,11 @@ class Student(Person):
         # в якого немає групи не буде проблем з тим, що йому треба заповнювати це поле
 
     def add_person(self, students):
-
         if self not in students.list_of_instance:
-            NaUKMA.add_instance_to_list(self, students)
-            print(f"Студента '{self.name} {self.surname}' додано.")
-
+            students.list_of_instance.append(self)
+            save_data()
         else:
             print(f"Студент '{self.name} {self.surname}' вже існує.")
-        save_data()
 
     def delete_person(self, students):
         if self in students.list_of_instance:

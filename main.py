@@ -1,17 +1,17 @@
 from menu import Menu
 from models.csv_mastering import *
-
+get_from_data("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt")
 system.add_instance_to_naukma()
 people.add_instance_to_naukma()
 cathedras.add_instance_to_dict(system)
 faculties.add_instance_to_dict(system)
 students.add_instance_to_dict(people)
 teachers.add_instance_to_dict(people)
-student1 = models.Student("Діма", "Єрмолов",
-                   "Олександрович", "Fi",
-                   "math", "aplied math", "1")
-student1.add_person(students)
-print(students.list_of_instance)
+# student1 = models.Student("Діма", "Єрмолов",
+#                    "Олександрович", "Fi",
+#                    "math", "aplied math", "1")
+# student1.add_person(students)
+# print(students.list_of_instance)
 list_of_student_names = []
 for student in students.list_of_instance:
     list_of_student_names.append(f"{student.surname} {student.name} {student.fathername}")
@@ -32,6 +32,7 @@ menu_dict = {"NaUKMA": menu1, "People": menu2,
 menu_dict2 = {"People": menu1, "System": menu1, "Cathedras": menu3,
               "Faculties": menu3, "Students": menu2, "Teachers": menu2}
 main_menu = menu1
+
 
 while True:
     try:
@@ -146,7 +147,7 @@ while True:
                 for student in sorted_list:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             elif command2 in ["f", "faculty"]:
-                sorted_list = models.Student.get_by_alphabet_on_faculty(input("Enter faculty:"), students)
+                sorted_list = models.Student.get_by_alphabet_on_faculty(input("Enter faculty: "), students)
                 if sorted_list is None:
                     print("No students")
                     continue
@@ -160,7 +161,7 @@ while True:
                 for student in sorted_list:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             elif command2 in ["cc", "cathedracourse"]:
-                sorted_list = models.Student.get_students_cathedra_course(input("Enter cathedra: "), input("Enter course"),
+                sorted_list = models.Student.get_students_cathedra_course(input("Enter cathedra: "), input("Enter course: "),
                                                                    students)
                 if sorted_list is None:
                     print("No students")
@@ -169,11 +170,6 @@ while True:
                     print(f"{student.surname} {student.name} {student.fathername}\n")
             else:
                 print("Invalid command")
-        
-
-
-
-
         else:
             print("Invalid command")
     except FileNotFoundError:
