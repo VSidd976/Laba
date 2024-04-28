@@ -11,8 +11,8 @@ alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "�
 
 
 class Student(Person):
-    def __init__(self, name, surname, fathername, faculty, specialty, course, group=None):
-        super().__init__(name, surname, fathername, faculty)
+    def __init__(self, name, surname, fathername, faculty, cathedra, specialty, course, group=None):
+        super().__init__(name, surname, fathername, faculty, cathedra)
         self.specialty = specialty
         self.course = course
         self.group = group

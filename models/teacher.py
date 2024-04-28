@@ -11,8 +11,7 @@ alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "�
 
 class Teacher(Person):
     def __init__(self, name, surname, fathername, faculty, cathedra):
-        super().__init__(name, surname, fathername, faculty)
-        self.cathedra = cathedra
+        super().__init__(name, surname, fathername, faculty, cathedra)
 
     def add_person(self, teacher):
         if self not in teacher.list_of_instance:
