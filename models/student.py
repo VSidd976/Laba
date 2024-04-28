@@ -13,9 +13,12 @@ class Student(Person):
         # в якого немає групи не буде проблем з тим, що йому треба заповнювати це поле
 
     def add_person(self, students):
+
         if self not in students.list_of_instance:
             NaUKMA.add_instance_to_list(self, students)
             print(f"Студента '{self.name} {self.surname}' додано.")
+
+
         else:
             print(f"Студент '{self.name} {self.surname}' вже існує.")
 
