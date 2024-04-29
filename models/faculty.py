@@ -1,6 +1,6 @@
 from models.system import System
-from models.naukma import NaUKMA
-# from data2 import csv_mastering
+from models.csv_mastering import save_data
+import errors
 
 
 class Faculty(System):
@@ -8,19 +8,28 @@ class Faculty(System):
         super().__init__(name, field_of_study)
 
     def add_instance(self, faculties):
-        if self.name not in faculties.dict_of_instance:
-            NaUKMA.add_instance_to_dict(self, faculties)
-            print(f"Факультет '{self.name}' додано.")
+        if self not in faculties.list_of_instance:
+            faculties.list_of_instance.append(self)
         else:
-            print(f"Факультет '{self.name}' вже існує.")
-        # csv_mastering.save_data()
+            raise errors.ItemExistsError(f"Факультет '{self.name}' вже існує.")
+        save_data()
     # Додає факультет і її значення в словнику матрьошці
 
     def delete_instance(self, faculties):
-        if self.name not in faculties.dict_of_instance:
-            print(f"Факультет '{self.name}' не існує.")
+        if self not in faculties.list_of_instance:
+            raise errors.ItemNotFoundError(f"Факультет '{self.name}' не існує.")
         else:
-            del faculties.dict_of_instance[self.name]
+            faculties.list_of_instance.remove(self)
             print(f"Факультет '{self.name}' видалено.")
-        # csv_mastering.save_data()
+            save_data()
     # Видаляє факультет і її ключ зі значенням в словнику матьошці
+
+    def edit_system_instance(self):
+        new_field = input("Впишіть нову сферу "
+                          "вивчення(якщо хочете залишити минулу,"
+                          " впишіть '-'):")
+        if new_field == '-':
+            pass
+        else:
+            self.field_of_study = new_field
+        save_data()

@@ -3,7 +3,7 @@ from models.objects import *
 
 
 def data_clean():
-    with open("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
+    with open("models\\csv_file.txt", 'w', newline='', encoding='utf-8'):
         pass
 
 
@@ -15,9 +15,9 @@ def save_data():
                      for i in teachers.list_of_instance]
     faculties_list = [[i.name, i.field_of_study]
                       for i in faculties.list_of_instance]
-    cathedras_list = [[i.name.i.cathedra]
+    cathedras_list = [[i.name, i.field_of_study]
                       for i in cathedras.list_of_instance]
-    with open("C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
+    with open("models\\csv_file.txt", 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(["Students data:"])
         # Формат: 'Name', 'Surname', 'Fathername', 'Faculty', 'Cathedra', 'Specialty', 'Course'
@@ -39,7 +39,7 @@ def save_data():
 
 
 def read_from_data():
-    with open('C:\\Users\\admin\\Downloads\\laba\\models\\csv_file.txt', 'r', newline='', encoding='utf-8') as file:
+    with open('models\\csv_file.txt', 'r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         for row in reader:
             result_string = ", ".join(row)
@@ -76,12 +76,11 @@ def get_from_data(input_file_direction):
                 teacher1.add_person(teachers)
             elif current_section == "faculties":
                 name, field_of_study = row
-                faculty = models.Faculty(name, field_of_study)
-                faculties.add_instance(faculty)
+                faculty1 = models.Faculty(name, field_of_study)
+                faculty1.add_instance(faculties)
             elif current_section == "cathedras":
                 name, field_of_study = row
-                cathedra_instance = models.Cathedra(name, field_of_study)
-                cathedras.add_instance(cathedra_instance)
-                pass
+                cathedra1 = models.Cathedra(name, field_of_study)
+                cathedra1.add_instance(cathedras)
     save_data()
 # Відновити дані з локального сховища

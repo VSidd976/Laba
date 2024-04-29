@@ -1,7 +1,6 @@
+import errors
 from models.person import Person
-from models.naukma import NaUKMA
-# from data import csv_mastering
-
+from models.csv_mastering import save_data
 
 alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
             "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч",
@@ -15,18 +14,18 @@ class Teacher(Person):
 
     def add_person(self, teacher):
         if self not in teacher.list_of_instance:
-            NaUKMA.add_instance_to_list(self, teacher)
+            teacher.list_of_instance.append(self)
+            save_data()
         else:
-            print(f"Викладача '{self.name} {self.surname}' вже існує.")
-        # csv_mastering.save_data()
+            raise errors.ItemExistsError(f"Викладача '{self.name} {self.surname}' вже існує.")
 
-    def delete_person(self, teacher):
-        if self not in teacher.list_of_instance:
-            NaUKMA.add_instance_to_list(self, teacher)
-            print(f"Викладача '{self.name} {self.surname}' додано.")
+    def delete_person(self, teachers):
+        if self in teachers.list_of_instance:
+            teachers.list_of_instance.remove(self)
+            print(f"Викладача '{self.name} {self.surname}' видалено.")
         else:
-            print(f"Викладача '{self.name} {self.surname}' вже існує.")
-        # csv_mastering.save_data()
+            raise errors.ItemNotFoundError(f"Викладача '{self.name} {self.surname}' немає.")
+        save_data()
 
     def show_info(self, teachers):
         if self not in teachers.list_of_instance:
@@ -47,8 +46,7 @@ class Teacher(Person):
                 list_by_name.append(teacher)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів з іменем {name} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів з іменем {name} не існує")
         else:
             return list_by_name
 
@@ -61,8 +59,7 @@ class Teacher(Person):
                 list_by_surname.append(teacher)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів з прізвищем {surname} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів з прізвищем {surname} не існує")
         else:
             return list_by_surname
 
@@ -75,8 +72,7 @@ class Teacher(Person):
                 list_by_fathername.append(teacher)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів з по-батькові {fathername} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів з по-батькові {fathername} не існує")
         else:
             return list_by_fathername
 
@@ -91,8 +87,7 @@ class Teacher(Person):
                 list_by_pib.append(teacher)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів з таким ПІБ не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів з таким ПІБ не існує")
         else:
             return list_by_pib
 
@@ -103,7 +98,7 @@ class Teacher(Person):
         for letter in alphabet:
             for i in list_of_teacher:
                 if letter == i.surname[0]:
-                    list_by_alphabet.append(list_of_teacher[i])
+                    list_by_alphabet.append(i)
         return list_by_alphabet
 
     # Вивести інформацію про всіх студентів факультета впорядкованих за алфавітом.
@@ -117,8 +112,7 @@ class Teacher(Person):
                 list_by_faculty.append(teach)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів в {faculty} факультеті не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів в {faculty} факультеті не існує")
         else:
             return list_by_faculty
 
@@ -131,8 +125,7 @@ class Teacher(Person):
                 list_by_cathedra.append(teach)
                 counter += 1
         if counter == 0:
-            print(f"Викладачів в {cathedra} кафедрі не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Викладачів в {cathedra} кафедрі не існує")
         else:
             return list_by_cathedra
 

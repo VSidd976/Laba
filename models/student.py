@@ -1,7 +1,6 @@
 from models.person import Person
-from models.naukma import NaUKMA
 from models.csv_mastering import save_data
-
+import errors
 alphabet = ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Ї", "Й",
             "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч",
             "Ш", "Щ", "Ь", "Ю", "Я"]
@@ -23,19 +22,19 @@ class Student(Person):
             students.list_of_instance.append(self)
             save_data()
         else:
-            print(f"Студент '{self.name} {self.surname}' вже існує.")
+            raise errors.ItemExistsError(f"Студент '{self.name} {self.surname}' вже існує.")
 
     def delete_person(self, students):
         if self in students.list_of_instance:
             students.list_of_instance.remove(self)
             print(f"Студента '{self.name} {self.surname}' вилучено.")
         else:
-            print(f"Студента '{self.name} {self.surname}' не існує.")
+            raise errors.ItemNotFoundError(f"Студента '{self.name} {self.surname}' не існує.")
         save_data()
 
     def show_info(self, students):
         if self not in students.list_of_instance:
-            print("Студента не існує.")
+            raise errors.ItemNotFoundError("Студента не існує.")
         else:
             print(f"Інформація про студента:\n"
                   f"Ім'я: {self.name}\n"
@@ -57,8 +56,7 @@ class Student(Person):
                 list_by_name.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів з іменем {name} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів з іменем {name} не існує")
         else:
             return list_by_name
 
@@ -71,8 +69,7 @@ class Student(Person):
                 list_by_surname.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів з прізвищем {surname} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів з прізвищем {surname} не існує")
         else:
             return list_by_surname
 
@@ -85,10 +82,8 @@ class Student(Person):
                 list_by_fathername.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів з по-батькові {fathername} не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів з по-батькові {fathername} не існує")
         else:
-            print(f"{fathername} with this fathername {list_by_fathername}")
             return list_by_fathername
 
     @staticmethod
@@ -102,8 +97,7 @@ class Student(Person):
                 list_by_pib.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів з таким ПІБ не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів з таким ПІБ не існує")
         else:
             return list_by_pib
 
@@ -116,8 +110,7 @@ class Student(Person):
                 list_by_course.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів на {course}-му курсі не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів на {course}-му курсі не існує")
         else:
             return list_by_course
 
@@ -130,8 +123,7 @@ class Student(Person):
                 list_by_group.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів в {group}-ій групі не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів в {group}-ій групі не існує")
         else:
             return list_by_group
 
@@ -144,8 +136,7 @@ class Student(Person):
                 list_by_faculty.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів в {faculty} факультеті не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів в {faculty} факультеті не існує")
         else:
             return list_by_faculty
 
@@ -158,8 +149,7 @@ class Student(Person):
                 list_by_cathedra.append(student)
                 counter += 1
         if counter == 0:
-            print(f"Студентів в {cathedra} кафедрі не існує")
-            return None
+            raise errors.ItemNotFoundError(f"Студентів в {cathedra} кафедрі не існує")
         else:
             return list_by_cathedra
     # Методи вище перевіряють чи існують студенти які відповідають певним параметром
@@ -174,7 +164,7 @@ class Student(Person):
         for letter in alphabet:
             for i in list_of_students:
                 if letter == i.surname[0]:
-                    list_by_alphabet.append(list_of_students[i])
+                    list_by_alphabet.append(i)
         return list_by_alphabet
     # Вивести інформацію про всіх студентів факультета впорядкованих за алфавітом.
 
@@ -185,7 +175,7 @@ class Student(Person):
         for letter in alphabet:
             for i in list_by_faculty:
                 if letter == i.surname[0]:
-                    list_by_alphabet.append(list_by_faculty[i])
+                    list_by_alphabet.append(i)
         return list_by_alphabet
     # Вивести інформацію про всіх студентів факультета впорядкованих за алфавітом.
 

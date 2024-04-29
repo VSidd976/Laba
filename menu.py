@@ -7,7 +7,7 @@ class Menu:
 
     def display(self):
         result = f"\n{self.name}\n"
-        result += "=" * 30 + "\n"
+        result += "=" * 70 + "\n"
         for index, item in enumerate(self.content):
             if self.index == index:
                 result += f"--> {item}\n"
@@ -24,4 +24,3 @@ class Menu:
         self.index += 1
         if self.index == len(self.content):
             self.index = 0
-

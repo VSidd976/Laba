@@ -13,10 +13,4 @@ class System(NaUKMA):
         pass
 
     def edit_system_instance(self):
-        new_field = input("Впишіть нову сферу "
-                          "вивчення(якщо хочете залишити минулу,"
-                          " впишіть '-'):")
-        if new_field == '-':
-            pass
-        else:
-            self.field_of_study = new_field
+        pass
